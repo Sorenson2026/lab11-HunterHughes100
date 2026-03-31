@@ -85,9 +85,10 @@ void analyzeArray(int numbers[], int size)
 		if (numbers[i] > max)
 			max = numbers[i];
 	}
-
+	avg = total / size;
 	//Display the results
 	cout << "The minimum number is: " << min << endl;
 	cout << "The maximum number is: " << max << endl;
 	cout << "The Total is: " << total << endl;
+	cout << "The Average is: " << avg << endl;
 }
