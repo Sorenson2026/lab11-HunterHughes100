@@ -4,6 +4,7 @@
 #include <iomanip>
 #include <fstream>
 #include <string>
+#include <cmath>
 using namespace std;
 
 //Function prototypes and named constants
@@ -17,6 +18,7 @@ int main()
 	//Create Array to read from
 	int numbers[SIZE] = { 0 };
 	int fileSize;
+
 	//Greeting 
 	cout << "Hi, I'm a Program that reads your file of numbers and does analysis on them" << endl;
 	
@@ -27,10 +29,10 @@ int main()
 	analyzeArray(numbers, fileSize);
 
 	// Test the readfile function by printing the numbers in the array and the count of numbers in the file
-	for (int i =0; i < fileSize; i++)
-		cout << numbers[i] << endl;
+	/*for (int i = 0; i < fileSize; i++)
+		cout << numbers[i] << endl;*/
 	cout << "There are " << fileSize << " numbers in the file." << endl;
-
+	
 	return 0;
 }
 
@@ -67,14 +69,15 @@ int readFile(int numbers[])
 	return count;
 }
 
-//This function finds teh maxmin total average and standard deiation of the array
+//This function finds the max, min, total, average and standard deiation of the array
 void analyzeArray(int numbers[], int size)
 {
-	//craete variables
+	//Create variables
 	int min = numbers[0];
 	int max = numbers[0];
 	int total = 0;
-	int avg;
+	float avg,stdDev;
+	float  sum = 0;
 
 	//test min and max
 	for (int i = 0; i < size; i++)
@@ -85,10 +88,21 @@ void analyzeArray(int numbers[], int size)
 		if (numbers[i] > max)
 			max = numbers[i];
 	}
-	avg = total / size;
+	avg = static_cast<float>(total) / size;
+
+	//compute the sum of the squared differences from the mean
+	for (int i = 0; i < size; i++)
+	{
+		sum += pow((numbers[i] - avg), 2);
+	}
+	
+	//compute standard deviation
+	stdDev = sqrt(sum / size);
+
 	//Display the results
 	cout << "The minimum number is: " << min << endl;
 	cout << "The maximum number is: " << max << endl;
 	cout << "The Total is: " << total << endl;
 	cout << "The Average is: " << avg << endl;
+	cout << "The standard deviation is: " << stdDev << endl;
 }
