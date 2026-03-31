@@ -20,7 +20,7 @@ int main()
 	int fileSize;
 
 	//Greeting 
-	cout << "Hi, I'm a Program that reads your file of numbers and does analysis on them" << endl;
+	cout << "Hi, I'm a Program that reads your file of numbers and does analysis on the first 100 numbers" << endl;
 	
 	//Call the readFile function to read the file and get the count of numbers in the file
 	fileSize = readFile(numbers);
@@ -30,9 +30,9 @@ int main()
 
 	// Test the readfile function by printing the numbers in the array and the count of numbers in the file
 	/*for (int i = 0; i < fileSize; i++)
-		cout << numbers[i] << endl;*/
+		cout << numbers[i] << endl;
 	cout << "There are " << fileSize << " numbers in the file." << endl;
-	
+	*/
 	return 0;
 }
 
@@ -60,8 +60,10 @@ int readFile(int numbers[])
 	}
 	
 	//Create loop to read input from the file and get count
-	while (inputFile >> numbers[count])
+	while (count < SIZE && inputFile >> numbers[count])
+	{
 		count++;
+	}
 
 	//Close File
 	inputFile.close();
