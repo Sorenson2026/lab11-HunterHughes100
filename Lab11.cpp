@@ -19,11 +19,19 @@ int main()
 	int fileSize;
 	//Greeting 
 	cout << "Hi, I'm a Program that reads your file of numbers and does analysis on them" << endl;
+	
+	//Call the readFile function to read the file and get the count of numbers in the file
 	fileSize = readFile(numbers);
 
+	//Call the analyzeArray function to analyze the data in the array
+	analyzeArray(numbers, fileSize);
+
+	// Test the readfile function by printing the numbers in the array and the count of numbers in the file
 	for (int i =0; i < fileSize; i++)
 		cout << numbers[i] << endl;
 	cout << "There are " << fileSize << " numbers in the file." << endl;
+
+	return 0;
 }
 
 //The readFile funciton read the number and determine how many there are and return that count
@@ -57,4 +65,29 @@ int readFile(int numbers[])
 	inputFile.close();
 
 	return count;
+}
+
+//This function finds teh maxmin total average and standard deiation of the array
+void analyzeArray(int numbers[], int size)
+{
+	//craete variables
+	int min = numbers[0];
+	int max = numbers[0];
+	int total = 0;
+	int avg;
+
+	//test min and max
+	for (int i = 0; i < size; i++)
+	{
+		total += numbers[i];
+		if (numbers[i] < min)
+			min = numbers[i];
+		if (numbers[i] > max)
+			max = numbers[i];
+	}
+
+	//Display the results
+	cout << "The minimum number is: " << min << endl;
+	cout << "The maximum number is: " << max << endl;
+	cout << "The Total is: " << total << endl;
 }
